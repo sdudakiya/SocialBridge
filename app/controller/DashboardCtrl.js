@@ -71,7 +71,41 @@ myApp.controller('DashboardCtrl', ["$scope", "authFact", "$http", function ($sco
             console.log(response);
         }
     });
-        //alert(numbers);
     }
 
+    $scope.SplitPostId = function(){
+        var url = "https://www.facebook.com/amar.mohite.969/posts/1401478289914319?notif_t=close_friend_activity&notif_id=1490268187475317";
+        var pieces = url.split("/posts/");
+        pieces = pieces[1].split("/");
+        console.log(pieces);
+    }
+
+    $scope.GetId = function(){
+        var url = "https://www.facebook.com/amar.mohite.969/posts/1401478289914319?notif_t=close_friend_activity&notif_id=1490268187475317";
+        var url = "https://www.facebook.com/events/1820346318289984/";
+
+        if (url.includes('posts')) {
+        var match = url.match(/posts\/(\d+)/);
+        //console.log(match);
+        if (match) {
+            console.log(match[1]);
+        }
+        };
+
+        if (url.includes('videos')) {
+        var match = url.match(/videos\/(\d+)/);
+        //console.log(match);
+        if (match) {
+            console.log(match[1]);
+        }
+        };
+
+        if (url.includes('events')) {
+        var match = url.match(/events\/(\d+)/);
+        //console.log(match);
+        if (match) {
+            console.log(match[1]);
+        }
+        };
+    }
 }]);
