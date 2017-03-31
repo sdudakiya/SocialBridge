@@ -108,4 +108,11 @@ myApp.controller('DashboardCtrl', ["$scope", "authFact", "$http", function ($sco
         }
         };
     }
+
+    $scope.RawHtml = function(){
+	$http.get('https://www.facebook.com/amar.mohite.969/posts/1401478289914319?notif_t=close_friend_activity&notif_id=1490268187475317').then(function(response) {
+	    var raw_html = response.data;
+	    console.log(raw_html);
+	});
+	}
 }]);
