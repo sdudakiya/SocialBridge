@@ -1,6 +1,6 @@
-myApp.controller('HomeCtrl', ["$scope", 'authFact', "$location", "$cookieStore", function ($scope, authFact, $location, $cookieStore) {
+socialBridge.controller('HomeCtrl', ["$scope", 'authFact', "$location", "$cookieStore", function ($scope, authFact, $location, $cookieStore) {
 	$scope.name = 'Please Login';
-	
+
 	$scope.FBLogin = function () {
 		FB.login(function(response) {
 			if (response.authResponse) {
@@ -12,7 +12,7 @@ myApp.controller('HomeCtrl', ["$scope", 'authFact', "$location", "$cookieStore",
 					var accessToken = FB.getAuthResponse().accessToken;
 					console.log(accessToken);
 					authFact.setAccessToken(accessToken);
-					$location.path("/dashboard");
+					$location.path("/posts");
 					$scope.$apply();
 				});
 			} else {

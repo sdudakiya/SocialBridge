@@ -1,8 +1,8 @@
-var myApp = angular.module( 'myApp', ['ngRoute', 'ngCookies']);
+var socialBridge = angular.module( 'socialBridge', ['ngRoute', 'ngCookies']);
 
 window.fbAsyncInit = function() {
     FB.init({
-      appId      : '399682717062112',
+      appId      : '1663972093898924',
       xfbml      : true,
       version    : 'v2.8'
     });

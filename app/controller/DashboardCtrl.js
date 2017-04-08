@@ -1,4 +1,4 @@
-myApp.controller('DashboardCtrl', ["$scope", "authFact", "$http", function ($scope, authFact, $http) {
+socialBridge.controller('DashboardCtrl', ["$scope", "authFact", "$http", function ($scope, authFact, $http) {
     var userObj = authFact.getUserObj();
     console.log(userObj);
     $scope.Name = userObj.name;
