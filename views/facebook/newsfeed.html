@@ -1,9 +1,40 @@
 <h2>Posts</h2>
-<table class="table">
-  <tbody>
-    <tr ng-repeat="post in posts">
-      <td>{{post.story}}</td>
-      <td>{{post.id}}</td>
-    </tr>
-  </tbody>
-</table>
+<button class="btn btn-success btn-sm" ng-click="api()"><span class="glyphicon glyphicon-refresh"></span> Refresh</button>
+
+<div class="row">
+  <div class="col-sm-6 post" ng-repeat="post in posts">
+    <div class="row">
+      <div class="col-sm-11"><p>{{post.story}}</p></div>
+      <div class="col-sm-1">
+        <a href="{{post.link}}" target="blank" title="original post"><span class="glyphicon glyphicon-share"></span></a>
+        <a href="#" title="share"><span class="glyphicon glyphicon-share-alt"></span></a>
+      </div>
+
+      <div class="col-sm-3">
+        <button class="thumbnail" title="View Image" data-toggle="modal" data-target="#{{post.id}}">
+          <img class="img img-responsive" ng-if="post.picture !== null" class="img-thumbnail" style="width:100%;height:auto" src="{{post.picture}}" />
+        </button>
+      </div>
+
+      <div class="col-sm-8"><p>{{post.description}}</p></div>
+      <div class="col-sm-1"></div>
+    </div>
+
+    <div class="modal fade" id="{{post.id}}" role="dialog">
+      <div class="modal-dialog">
+
+        <!-- Modal content-->
+        <div class="modal-content">
+
+          <div class="modal-body">
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+            <img class="img img-responsive" src="{{post.full_picture}}" />
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+  </div>
+</div>

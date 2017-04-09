@@ -1,5 +1,9 @@
-var socialBridge = angular.module( 'socialBridge', ['ngRoute', 'ngCookies']);
-
+var socialBridge = angular.module( 'socialBridge', ['ngRoute','ngCookies','ng-facebook-api'])
+      .config(function(facebookProvider) {
+        facebookProvider.setInitParams('1663972093898924',true,true,true,'v2.8');
+        facebookProvider.setPermissions('user_posts','read_stream');
+      });
+/*
 window.fbAsyncInit = function() {
     FB.init({
       appId      : '1663972093898924',
@@ -16,3 +20,4 @@ window.fbAsyncInit = function() {
      js.src = "//connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+*/

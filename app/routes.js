@@ -1,9 +1,12 @@
 socialBridge.config(['$routeProvider', function ($routeProvider) {
 	$routeProvider
 	.when("/", {
-		templateUrl: 'views/home/login.html',
-		controller: 'HomeCtrl'
-	})
+		// templateUrl: 'views/home/login.html',
+		// controller: 'HomeCtrl'
+		templateUrl:'views/facebook/newsfeed.html',
+		controller: 'fbPostCntrl'
+	});
+}]);/*
 	.when("/dashboard", {
 		templateUrl: 'views/home/dashboard.html',
 		controller: 'DashboardCtrl',
@@ -26,6 +29,8 @@ socialBridge.run(["$rootScope", "$location", "authFact", function($rootScope, $l
 		//console.log(next);
 		//console.log(current);
 		/* If the user is authenticated, the user should get access Token */
+
+		/*
 		if (next.$$route.authenticated) {
 			var userAuth = authFact.getAccessToken();
 			if (!userAuth) {
@@ -33,4 +38,4 @@ socialBridge.run(["$rootScope", "$location", "authFact", function($rootScope, $l
 			};
 		};
 	})
-}]);
+}]);*/
