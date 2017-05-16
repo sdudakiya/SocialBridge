@@ -3,9 +3,19 @@ socialBridge.config(['$routeProvider', function ($routeProvider) {
 	.when("/", {
 		// templateUrl: 'views/home/login.html',
 		// controller: 'HomeCtrl'
+		templateUrl:'views/home/home.html',
+		controller: 'HomeCtrl'
+	})
+	.when("/facebook", {
+		// templateUrl: 'views/home/login.html',
+		// controller: 'HomeCtrl'
 		templateUrl:'views/facebook/newsfeed.html',
 		controller: 'fbPostCntrl'
-	});
+	})
+	.when("/twitter", {
+		templateUrl:'views/twitter/tweets.html',
+		controller:'tweetCntrl'
+	})
 }]);/*
 	.when("/dashboard", {
 		templateUrl: 'views/home/dashboard.html',

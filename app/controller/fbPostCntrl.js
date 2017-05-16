@@ -30,7 +30,7 @@ socialBridge
     }
     $scope.posts = [];
     $scope.form = {method:'GET',path:"/me/posts?fields=picture,story,description,link,full_picture"};
-    $scope.api = function () {
+    $scope.fbapi = function () {
       facebook.api($scope.form.path,facebook.API_METHOD[$scope.form.method]).then(function (resp) {
         console.log("Success!");
         console.log(resp);

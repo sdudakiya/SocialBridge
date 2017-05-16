@@ -1,4 +1,4 @@
-var socialBridge = angular.module( 'socialBridge', ['ngRoute','ngCookies','ng-facebook-api'])
+var socialBridge = angular.module( 'socialBridge', ['ngRoute','ngCookies','ng-facebook-api','ngSanitize','socialBridge.services'])
       .config(function(facebookProvider) {
         facebookProvider.setInitParams('1663972093898924',true,true,true,'v2.8');
         facebookProvider.setPermissions('user_posts','read_stream');
