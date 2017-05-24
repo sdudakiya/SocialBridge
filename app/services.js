@@ -55,4 +55,58 @@ angular.module('socialBridge.services',[]).factory('twitterService',function($q)
       return deferred.promise;
     }
   }
+}).factory('spontaneousService',function($q) {
+  var authorizationResult = false;
+
+  return {
+    initialize: function (){
+      //initialize OAuth.io with public key
+      OAuth.initialize('IO5ZVbE0oF4cIGaffe5DaKG0eg8XzC',{
+        cache: true
+      });
+
+      //try to create an authorization result when the page loads,
+      //this means a returning user won't have to click the twitter button again
+      authorizationResult = OAuth.create("spontaneous");
+    },
+    isReady: function(){
+      return (authorizationResult);
+    },
+    connectSpontaneous: function(){
+      var deferred = $q.defer();
+      OAuth.popup("spontaneousmatch", {
+        cache: true
+      }, function (error, result){
+        //cache means to execute the callback if the tokens are already present
+        if(!error) {
+          console.log("Authentication successful");
+          authorizationResult = result;
+          deferred.resolve();
+        } else {
+          console.log(error);
+        }
+      });
+      return deferred.promise;
+    },
+    clearCache: function() {
+      OAuth.clearCache('spontaneous');
+      authorizationResult = false;
+    },
+    getLatestPosts: function() {
+      //create a deferred object using Angular's $q service
+      var deferred = $q.defer();
+      var url = 'http://spontaneousmatch.ca/wp-json/wp/v2/social';
+      var promise = authorizationResult.get(url).done(function(data) {
+        // https://dev.twitter.com/docs/api/1.1/get/statuses/home_timeline
+        // when the data is retrieved resolve the deferred object
+        console.log(data);
+        deferred.resolve(data);
+      }).fail(function(err) {
+        console.log(err);
+        deferred.reject(err);
+      });
+      //return the promise of the deferred object
+      return deferred.promise;
+    }
+  }
 });
