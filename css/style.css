@@ -14,3 +14,23 @@ a {
 .post:hover {
   box-shadow: 0 0 5px #1f1f1f;
 }
+
+#signOut{
+  display : none;
+}
+
+.tweet{
+  padding:20px;
+}
+
+.tweet .tweet-content{
+  padding-bottom: 10px;
+}
+
+.tweet .load-more {
+    margin: 30px 10px;
+}
+
+.tweet-header{
+    margin: 25px 0;
+}

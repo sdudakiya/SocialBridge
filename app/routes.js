@@ -14,7 +14,8 @@ socialBridge.config(['$routeProvider', function ($routeProvider) {
 	})
 	.when("/twitter", {
 		templateUrl:'views/twitter/tweets.html',
-		controller:'tweetCntrl'
+		controller:'tweetCntrl',
+		controllerAs:'tweet'
 	})
 }]);/*
 	.when("/dashboard", {

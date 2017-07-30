@@ -1,0 +1,12 @@
+<div class="modal-header">
+    <h3 class="modal-title">Post</h3>
+</div>
+<div class="modal-body">
+    <h4>{{modalInstance.param.response.title.raw}}</h4>
+    <div ng-bind-html="modalInstance.param.response.content.rendered">
+    </div>
+</div>
+<div class="modal-footer">
+    <button class="btn btn-primary" type="button" ng-click="modalInstance.ok()">OK</button>
+    <button class="btn btn-warning" type="button" ng-click="modalInstance.cancel()">Cancel</button>
+</div>
