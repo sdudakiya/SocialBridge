@@ -1,9 +1,9 @@
 <!--div class="container" ng-controller="tweetCntrl"-->
-  <div class="row tweet-header">
+  <div class="row tweet-header" ng-cloak>
     <div class="col-xs-2" ng-if="!tweet.connectedTwitter">
       <button ng-click="tweet.connectButton()" id="connectButton" type="button" class="btn btn-primary">Connect Twitter</button>
     </div>
-    <div class="col-xs-2">
+    <div class="col-xs-2" ng-if="tweet.connectedTwitter">
       <button ng-click="tweet.refreshTimeline()" id="getTimelineButton" type="button" class="btn btn-info">Get My Timeline</button>
       <button ng-click="tweet.signOut()" id="signOut" type="button" class="btn btn-link" >Sign Out</button>
     </div>
