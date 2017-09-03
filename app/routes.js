@@ -3,8 +3,14 @@ socialBridge.config(['$routeProvider', function ($routeProvider) {
 	.when("/", {
 		// templateUrl: 'views/home/login.html',
 		// controller: 'HomeCtrl'
-		templateUrl:'views/home/home.html',
+		//templateUrl:'views/home/home.html',
 		controller: 'HomeCtrl'
+	})
+	.when("/spontaneous", {
+		// templateUrl: 'views/home/login.html',
+		// controller: 'HomeCtrl'
+		templateUrl:'views/home/home.html',
+		controller: 'MainCtrl'
 	})
 	.when("/facebook", {
 		// templateUrl: 'views/home/login.html',
