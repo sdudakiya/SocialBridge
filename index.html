@@ -8,6 +8,9 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body ng-controller="HomeCtrl as hmCtrl">
+<div ng-class="{'loading-background':hmCtrl.loadingSpinner}">
+	<div ng-class="{'loading-spinner' : hmCtrl.loadingSpinner}"></div>
+</div>
 	<div class="container" ng-if="hmCtrl.loginSuccess" ng-cloak>
 		<div class="btn-group" ng-if="hmCtrl.nonceError === undefined">
 			<button class="btn btn-primary btn-lg" ng-click="hmCtrl.spontaneousHome()">Spontaneous</button>

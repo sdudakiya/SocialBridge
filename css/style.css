@@ -34,3 +34,21 @@ a {
 .tweet-header{
     margin: 25px 0;
 }
+
+.loading-spinner{
+  position: absolute;
+  background-image: url(../images/loading-spinner.gif);
+  z-index: 5;
+  margin: 30%;
+  width: 250px;
+  height: 250px;
+}
+
+.loading-background {
+  background-color: black;
+  position: absolute;
+  width: 100%;
+  z-index: 2;
+  opacity: 0.5;
+  height: 100%;
+}

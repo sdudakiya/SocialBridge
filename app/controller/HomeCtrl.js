@@ -13,6 +13,7 @@ socialBridge.controller('HomeCtrl', ["$location",
             'username' : user.userName,
             'password' : user.password
         };
+        $scope.loadingSpinner = true;
         spontaneousMatchService.generateCookie(data).then(function (response) {
             if(response) {
             	var data = {
@@ -24,12 +25,15 @@ socialBridge.controller('HomeCtrl', ["$location",
 					$location.path("/spontaneous");
                 }, function () {
 					$scope.nonceError = 'Server is down';
+                    $scope.loadingSpinner = false;
                 });
 			} else {
             	$scope.errorMessage = true;
+                $scope.loadingSpinner = false;
 			}
         }, function (error) {
             $scope.errorMessage = true;
+            $scope.loadingSpinner = false;
             console.log(error);
         });
 	}
