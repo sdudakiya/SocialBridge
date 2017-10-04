@@ -1,8 +1,28 @@
 socialBridge
-.controller('MainCtrl', function($scope, $q, spontaneousService) {
+.controller('MainCtrl', ["$q",
+    "spontaneousService",
+    "spontaneousMatchService",
+    "$filter",
+    function($q, spontaneousService, spontaneousMatchService, $filter) {
+  var $scope = this;
   $scope.myPosts = [];
 
-  spontaneousService.initialize();
+
+
+  $scope.login = false;
+
+  //spontaneousService.initialize();
+  var initilaize = function () {
+      spontaneousMatchService.fetchPost().then(function (res) {
+        if(res !== false) {
+            $scope.myPosts = res;
+        }
+      },function (error) {
+          console.log(error);
+      });
+  };
+  initilaize();
+
 console.log("Spontaneous Initialized");
   //using the OAuth authorization result get the latest 20 tweets from twitter for the user
   $scope.refreshPosts = function() {
@@ -11,23 +31,12 @@ console.log("Spontaneous Initialized");
     }, function() {
       $scope.rateLimitError = true;
     });
-  }
+  };
 
   //when the user clicks the connect twitter button, the popup authorization window opens
-  $scope.connectSpontaneousButton = function() {
-    spontaneousService.connectSpontaneous().then(function() {
-      if(spontaneousService.isReady()) {
-        //if the authorization is successful, hide the connect button and display the tweets
-        $('#connectSpontaneousButton').fadeOut(function() {
-          $('#getPostsButton','#signOutSpontaneous').fadeIn();
-          $scope.refreshPosts();
-          $scope.connectedSpontaneous = true;
-        });
-      } else {
-        console.log("Spontaneous Service not ready!");
-      }
-    });
-  }
+  /*$scope.connectSpontaneousButton = function() {
+
+  }*/
 
   //sign out clears the OAuth cache, the user will have to reauthenticate when returning
   $scope.signOutSpontaneous = function () {
@@ -48,4 +57,4 @@ console.log("Spontaneous Initialized");
     $scope.connectedSpontaneous = true;
     $scope.refreshPosts();
   }
-});
+}]);

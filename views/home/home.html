@@ -1,35 +1,36 @@
-<h2>Posts</h2>
-
-<div class="container" ng-controller="MainCtrl">
-  <br><br>
-  <div class="row">
-    <div class="col-xs-6">
-      <button ng-click="connectSpontaneousButton()" id="connectSpontaneousButton" type="button" class="btn btn-primary">Connect SpontaneousMatch</button>
-      <button ng-click="refreshPosts()" id="getPostsButton" type="button" class="btn btn-info" style="display:none;">Get My Posts</button>
-      <button ng-click="signOutSpontaneous()" id="signOutSpontaneous" type="button" class="btn btn-link" style="display:none;">Sign Out</button>
-    </div>
-    <div class="col-xs-6">
-      <input type="text" ng-model="searchTerm" class="form-control" id="searchBox" placeholder="Enter search term here" ng-show="connectedSpontaneous" />
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-xs-12" id="results">
-      <div class="row" ng-repeat="p in posts | filter:searchTerm">
-        <div class="col-xs-2 col-sm-1">
-          <img ng-src="{{t.user.profile_image_url}}" class="img-circle">
-        </div>
-        <div class="col-xs-10 col-sm-11">
-          <small>{{t.user.name}}</small>
-          <br> <span ng-bind-html="t.text"></span>
-        </div>
+<div ng-controller="MainCtrl as mainCtrl">
+  <br>
+  <div class="container" ng-cloak>
+    <div class="row">
+      <div class="col-xs-2">
+        <button ng-click="mainCtrl.refreshTimeline()" id="getTimelineButton" type="button" class="btn btn-info">Get My Timeline</button>
       </div>
-
-      <div ng-show="rateLimitError">
-        Rate limit reached. You are making too many requests.
+      <div class="col-xs-8">
+        <input type="text" ng-model="searchTerm" class="form-control" id="searchBox" placeholder="Enter search term here" />
       </div>
-      <div>
-        <br/>
-        <input type="button" class="btn btn-info" id="load-more" ng-click="refreshPosts()" ng-show="connectedSpontaneous" value="Refresh" />
+      <div class="col-xs-2">
+        <button ng-click="mainCtrl.signOut()" id="signOut" type="button" class="btn btn-link" >Sign Out</button>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-xs-12" id="results">
+        <div class="row" ng-repeat="post in mainCtrl.myPosts | filter: searchTerm">
+          <div class="col-xs-2 col-sm-1">
+            <img ng-src="{{}}" class="img-circle">
+          </div>
+          <div class="col-xs-10 col-sm-11">
+            <small>{{post.title.rendered}}</small>
+            <br> <span ng-bind-html="post.content.rendered"></span>
+          </div>
+        </div>
+
+        <div ng-show="rateLimitError">
+          Rate limit reached. You are making too many requests.
+        </div>
+        <div>
+          <br/>
+          <input type="button" class="btn btn-info" id="load-more" ng-click="refreshPosts()" ng-show="connectedSpontaneous" value="Refresh" />
+        </div>
       </div>
     </div>
   </div>

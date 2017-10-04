@@ -7,18 +7,34 @@
 	<link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-	<div class="container">
-		<div class="btn-group" ng-controller="HomeCtrl">
-			<button class="btn btn-primary btn-lg" ng-click="spontaneousHome()">Spontaneous</button>
-		  <button class="btn btn-primary btn-lg" ng-click="facebookHome()">Facebook</button>
-		  <button class="btn btn-primary btn-lg" ng-click="twitterHome()">Twitter</button>
+<body ng-controller="HomeCtrl as hmCtrl">
+	<div class="container" ng-if="hmCtrl.loginSuccess" ng-cloak>
+		<div class="btn-group" ng-if="hmCtrl.nonceError === undefined">
+			<button class="btn btn-primary btn-lg" ng-click="hmCtrl.spontaneousHome()">Spontaneous</button>
+		    <button class="btn btn-primary btn-lg" ng-click="hmCtrl.facebookHome()">Facebook</button>
+		    <button class="btn btn-primary btn-lg" ng-click="hmCtrl.twitterHome()">Twitter</button>
 		</div>
-		<div class="row">
+		<div class="panel" ng-if="hmCtrl.nonceError"><h1>{{hmCtrl.nonceError}}</h1></div>
+		<div class="row" ng-if="hmCtrl.nonceError === undefined">
 			<div class="col-sm-12" ng-view></div>
 		</div>
 	</div>
+	<div class="container" ng-if="!hmCtrl.loginSuccess" ng-cloak >
+		<p ng-if="hmCtrl.errorMessage" class="alert-danger">Invalid username / password</p>
+		<form name="userLogin" novalidate>
+			<ng-form name="userFieldForm">
+				<label>UserName</label>
+				<input type="text" class="form-control" name="user" ng-model="user.userName" required>
+				<p class="help-block" ng-show="userFieldForm.user.$invalid">Valid Email Address Required</p>
+				<label>Password</label>
+				<input type="password" class="form-control" name="password" ng-model="user.password" required>
+				<p class="help-block" ng-show="userFieldForm.password.$invalid"><sup>*</sup>Mandatory field</p>
+			</ng-form>
+			<button class="btn btn-primary form-control-static btn-group-sm" ng-disabled="userFieldForm.$invalid" ng-click="hmCtrl.login(user)">Sign In</button>
+		</form>
+	</div>
 	<script src="vendor/jquery.min.js"></script>
+	<script src="./properties.js"></script>
     <script src="vendor/angular/angular.min.js"></script>
     <script src="vendor/angular/angular-sanitize.js"></script>
     <script src="vendor/angular/angular-routes.min.js"></script>
@@ -29,7 +45,7 @@
 	<script type="text/javascript" src="vendor/oauth.js"></script>
 	<script type="text/javascript" src="app/app.js"></script>
 	<script type="text/javascript" src="app/routes.js"></script>
-	<script type="text/javascript" src="app/utilities/utility.service.js"></script>
+	<script type="text/javascript" src="app/service/spontaneousMatchService.js"></script>
 	<script type="text/javascript" src="app/factories/modalFactory.js"></script>
 	<script type="text/javascript" src="app/controller/modalInstanceCtrl.js"></script>
 	<script type="text/javascript" src="app/controller/HomeCtrl.js"></script>
@@ -42,6 +58,5 @@
 
 	<script type="text/javascript" src="vendor/angular/angular-cookies.min.js"></script>
 </body>
-
 
 </html>

@@ -12,24 +12,27 @@ socialBridge
     }, function() {
       $scope.rateLimitError = true;
     });
-  }
+  };
 
   /**To post the socialBridge Post to spontaneousMatch*/
   $scope.postFeed = function (title, content) {
-    debugger;
       var postFeedDeferred = $q.defer();
-      var promise = spontaneousMatchService.postFeed(title, content);
+      var data = {
+          'title' : title,
+          'content' : content,
+          'type' : 'social'
+      };
+      var promise = spontaneousMatchService.addPost(data);
       promise.then(function(response){
-        postFeedDeferred.resolve(response);
-        console.log(response.successResponse);
-        console.log(response.successStatus);
-        modalFactory.open('md', 'views/popModal.html', {response : response.successResponse});
+          postFeedDeferred.resolve(response);
+          console.log(response.post);
+          modalFactory.open('md', 'views/popModal.html', {response : response.post});
       },function (error) {
         postFeedDeferred.reject(error);
         console.log(error.errorResponse);
-        console.log(error.errorStatus);
+          console.log(error.errorStatus);
       });
-  }
+  };
   //when the user clicks the connect twitter button, the popup authorization window opens
   $scope.connectButton = function() {
     twitterService.connectTwitter().then(function() {
@@ -44,7 +47,7 @@ socialBridge
         console.log("Service not ready!");
       }
     });
-  }
+  };
 
 
   //sign out clears the OAuth cache, the user will have to reauthenticate when returning
@@ -57,7 +60,7 @@ socialBridge
         $scope.connectedTwitter = false
       })
     });
-  }
+  };
 
   //if the user is a returning user, hide the sign in button and display the tweets
   if(twitterService.isReady()) {
