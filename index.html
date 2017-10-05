@@ -1,24 +1,30 @@
 <!DOCTYPE html>
 <html ng-app = "socialBridge">
 <head>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>Spontaneous App For Social Shares</title>
 	<!-- Latest compiled and minified CSS -->
 	<link rel="stylesheet" href="vendor/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
 	<link rel="stylesheet" href="css/style.css">
+	<link rel="stylesheet" href="css/font-awesome.min.css">
 </head>
 <body ng-controller="HomeCtrl as hmCtrl">
 <div ng-class="{'loading-background':hmCtrl.loadingSpinner}">
 	<div ng-class="{'loading-spinner' : hmCtrl.loadingSpinner}"></div>
 </div>
-	<div class="container" ng-if="hmCtrl.loginSuccess" ng-cloak>
-		<div class="btn-group" ng-if="hmCtrl.nonceError === undefined">
-			<button class="btn btn-primary btn-lg" ng-click="hmCtrl.spontaneousHome()">Spontaneous</button>
-		    <button class="btn btn-primary btn-lg" ng-click="hmCtrl.facebookHome()">Facebook</button>
-		    <button class="btn btn-primary btn-lg" ng-click="hmCtrl.twitterHome()">Twitter</button>
+	<div class="container base-container" ng-if="hmCtrl.loginSuccess" ng-cloak>
+		<div class="navigation row" ng-if="hmCtrl.nonceError === undefined">
+			<div class="btn-primary btn-sm col-xs-12"><h3>Social Bridge</h3></div>
+			<button class="btn btn-primary btn-lg col-xs-4" ng-click="hmCtrl.spontaneousHome()"><i class="fa fa-home" aria-hidden="true"></i>
+</button>
+		    <button class="btn btn-primary btn-lg col-xs-4" ng-click="hmCtrl.facebookHome()"><i class="fa fa-facebook" aria-hidden="true"></i>
+</button>
+		    <button class="btn btn-primary btn-lg col-xs-4" ng-click="hmCtrl.twitterHome()"><i class="fa fa-twitter" aria-hidden="true"></i>
+</button>
 		</div>
 		<div class="panel" ng-if="hmCtrl.nonceError"><h1>{{hmCtrl.nonceError}}</h1></div>
-		<div class="row" ng-if="hmCtrl.nonceError === undefined">
+		<div class="row  feed-content" ng-if="hmCtrl.nonceError === undefined">
 			<div class="col-sm-12" ng-view></div>
 		</div>
 	</div>

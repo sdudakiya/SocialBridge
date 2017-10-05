@@ -1,3 +1,25 @@
+.base-container {
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+}
+
+.navigation {
+  text-align: center;
+  position: fixed;
+  width: 100%;
+  z-index: 200;
+}
+
+.navigation button {
+  border-radius: 6px 6px 0 0;
+}
+
+.feed-content {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top:100px;
+}
+
 a {
   decoration: none;
 }
